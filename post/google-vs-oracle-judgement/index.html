@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+<meta name="author" content="Karthik">
+
+
+
+<meta name="description" content="Last weekend, to kill time, I decided to read the judgement in the recently concluded Oracle vs Google lawsuit. If you, as a programmer, do not know what this is about, here is a gist: Google re-implemented Oracle&rsquo;s Java SE/ME APIs to create a runtime for Android (called Dalvik and a later iteration called ART). Oracle promptly filed a lawsuit claiming damages.
+The latest judgement from the U.S. Supreme court, which was delivered on April 5th, reversed an earlier lower court&rsquo;s opinion and decided in favour of Google.">
+
+
+
+<link rel="icon" href="/images/favicon.png">
+
+
+
+<meta name="keywords" content=" hugo  latex  theme ">
+
+
+
+
+<script>
+  
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\[\[', '\]\]']],
+      processEscapes: true,
+      processEnvironments: true,
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    }
+  };
+</script>
+
+<script async defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+
+
+
+<link rel="canonical" href="https://k-metric.github.io/post/google-vs-oracle-judgement/">
+
+
+
+
+<title>Google v. Oracle and API analogies - Karthik&#39;s Blog</title>
+
+
+
+<link media="screen" rel="stylesheet" href='https://k-metric.github.io/css/common.css'>
+<link media="screen" rel="stylesheet" href='https://k-metric.github.io/css/content.css'>
+<link media="screen" rel="stylesheet" href='https://k-metric.github.io/css/highlight.css'>
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Google v. Oracle and API analogies" />
+<meta name="twitter:description" content="Last weekend, to kill time, I decided to read the judgement in the recently concluded Oracle vs Google lawsuit. If you, as a programmer, do not know what this is about, here is a gist: Google re-implemented Oracle&rsquo;s Java SE/ME APIs to create a runtime for Android (called Dalvik and a later iteration called ART). Oracle promptly filed a lawsuit claiming damages.
+The latest judgement from the U.S. Supreme court, which was delivered on April 5th, reversed an earlier lower court&rsquo;s opinion and decided in favour of Google." />
+
+
+  <link rel="stylesheet" href='https://k-metric.github.io/css/single.css'>
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1>
+    <a href="https://k-metric.github.io/">Karthik&#39;s Blog</a>
+  </h1>
+
+  <nav>
+    
+    <span class="nav-bar-item">
+      <a class="link" href="/">Post</a>
+    </span>
+    
+    <span class="nav-bar-item">
+      <a class="link" href="/post/">Archives</a>
+    </span>
+    
+    <span class="nav-bar-item">
+      <a class="link" href="/about/">About</a>
+    </span>
+    
+  </nav>
+</header>
+
+    <main id="main" class="post">
+      
+      
+      
+      <h1>Google v. Oracle and API analogies</h1>
+      
+      <div class="content">
+        
+        <p>Last weekend, to kill time, I decided to read the judgement in the recently concluded Oracle vs Google lawsuit. If you, as a programmer, do not know what this is about, here is a gist: Google re-implemented Oracle&rsquo;s Java SE/ME APIs to create a runtime for Android (called Dalvik and a later iteration called ART). Oracle promptly filed a lawsuit claiming damages.</p>
+<p>The latest judgement from the U.S. Supreme court, which was delivered on April 5th, reversed an earlier lower court&rsquo;s opinion and decided in favour of Google. I do not know enough about the legal system of the U.S. to say if there are going to be additional appeals. In any case, because this specific judgement is a juxtaposition of two interesting topics, technology and law, the document[1] provides for an interesting read.</p>
+<h3 id="analogies"><strong>Analogies</strong></h3>
+<p>What I felt was particularly interesting are the analogies that both parties used to communicate  computer programming design to jurors to help them understand the concepts. APIs and program design have been compared during the course of this lawsuit to the Dewey Decimal system, travel guides, file cabinets, statutes in the legislature, etc.</p>
+<p>Although, both the majority decision and the dissenting opinion talk about program organisation as either simple or inventive respectively, it is within the context of the analogies above. So, it may be worth exploring if these analogues of API design are accurate, given that it is the substrate upon which such a substantial decision rests.</p>
+<p>All of these systems that were used as analogues to API design are hierarchically simple designs. For example, consider the Dewey decimal system, which is an organisational method to classify books in a library. The method consists of organising books into ten categories and then further subdividing each of those categories into ten sub-categories and so on [2]. The same  hierarchical categorisation applies to the rest of the analogies used as well; a file cabinet may have further compartments, a travel guide may have more specific information about localities in a city, etc.</p>
+<p>It is true that organising information into a hierarchical system of classification, begins to address the way APIs are designed. The most obvious example, which is cited several times in the judgement, is the classification of Java packages by function: the <strong>java.lang</strong> package provides  core language constructs, whereas <strong>java.io</strong> is concerned with IO operations and so on.</p>
+<p>But API design is so much more. The important part, in my opinion, begins when we start organising classes and methods within a package. It is at this juncture, that we are ready to apply John Locke&rsquo;s model of thought, which I&rsquo;ve lifted straight up from SICP [3] chapter 1,</p>
+<blockquote>
+<p><em>The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2. The second is bringing two ideas, whether simple or complex, together, and setting them by one another so as to take a view of them at once, without uniting them into one, by which it gets all its ideas of relations. 3. The third is separating them from all other ideas that accompany them in their real existence: this is called abstraction, and thus all its general ideas are made.</em></p>
+</blockquote>
+<p>.</p>
+<h3 id="beyond-packages"><strong>Beyond packages</strong></h3>
+<p>Everything that is learned by studying program structures, followed by some experience in building abstractions, compositions and relations are in play when this thought is applied to designing APIs. These ideas then spill out and even affect how even packages are organised.</p>
+<p>This may become obvious when we consider an example from the Java SE API.</p>
+<p><img src="/images/arraylist-screengrab.png" alt="image-20210414011935217"></p>
+<p>In this example, the <em>AbstractCollection</em> class provides <em>add</em>, <em>remove</em>, <em>iterator</em> and <em>size</em> methods, which are required operations for any collection of numbers. The <em>AbstractList</em> class add the requirement for a <em>set</em> method which is required when dealing with an ordered collection of numbers (List), where you&rsquo;d want to set a value at a specific rank. And ultimately the <em>ArrayList</em> concrete class includes a bunch of methods in addition to the ones provided by it&rsquo;s parents to make working with it easier.</p>
+<p><em>AbstractCollection</em> class has several sub-classes apart of <em>AbstractList</em> such as <em>AbstractSet</em> (unordered, non-duplicate numbers), <em>AbstractQueue</em> (numbers that can only be accessed in order), etc.</p>
+<p>Programmers know that this level of detail in design is important for non-trivial programs, because it lets us swap out, for example, a List with a Set. All a programmer has to do is to make sure that she only uses methods from a specific level of abstraction. While this example only serves to illustrate the point, this is how most non-trivial code design works in practice.</p>
+<p>Designing abstractions like these, I think, is not an easy skill to acquire. Even experienced programmers make design trade-offs constantly and keep correcting their design in the light of new information and knowledge. Most designs also require intimate knowledge of the domain that is being designed, such as computer networks (<em>java.net</em>), security (<em>java.security</em>) or cryptography (<em>java.crypto</em>).</p>
+<h3 id="a-new-analogy"><strong>A new analogy</strong></h3>
+<p>I think an analogy that represents API design has to be more dynamic, as against to how it is communicated in the lawsuit, as static and unchanging. This is because real world software design in general and API design in particular is a product of conflicting and ever-changing requirements that morphs the design as we gain new knowledge and acquire new information.</p>
+<p>The closest real world classification I can think of that may appeal to a non-programmer audience is an accelerated form of classification system for living organisms.</p>
+<p>At present, on Earth, the Linnean taxonomic system, or a derivative of it, is widely used to classify plants and animals. This system of classification, which you probably remember from high school, fits living organisms into, class, order, genus and species. Every species of plants and animals on earth is placed into one of these categories.</p>
+<p>The categories assign increasingly specific attributes as we move up the ladder, until the exact species is identified.</p>
+<p><img src="/images/linnean-classification.png" style="zoom: 67%;" /></p>
+<p>Image credit: <a href="https://libretexts.org/">https://libretexts.org/</a></p>
+<p>Our extension to this classification system, to adapt this as an analogy to API design is this: Imagine that you are a xenotaxonomist and you&rsquo;ve landed on an alien planet full of abundant alien life forms. Life here has evolved independently of earth and your mission is to categorise these life forms by their attributes.</p>
+<p>You start your work enthusiastically in a small area of the planet. You start collecting hundreds of samples and analysing them. You have a good classification system going, but once in a while you come find that a new species throws your system into a tumble. Their attributes and behaviour matches none of what you seen until now. You dust-off and re-organize your system to fit this one singular organism into it. All seems well.</p>
+<p>You then move into another area of the planet and you now have to throw away most of the system and start over with all of the new information that you&rsquo;ve now acquired. It takes years of patient cataloguing and classifying until you have a system that is stable. Biological classification on Earth is in this stable state, at least for plants and animals (there is still trouble with viral taxonomy).</p>
+<p>This process during the initial days of your job as xenotaxonomist, before a stable classification system is achieved, most accurately describes API design in my opinion. Granted, API design is not as large-scale as a biological classification system; at most, designers deal with hundreds of objects, not millions. But the additional complexity with program design is that objects (species) that we think we understand well sometimes change behaviours unexpectedly (due to a changing software requirement or new information) and now have to be re-classified.</p>
+<p>And the design has to be thrown out and started over on every new project on a deadline and budget.</p>
+<h3 id="closing-thoughts">Closing Thoughts</h3>
+<p>In my opinion, API design is non-trivial, and there is no merit to some claims that there is only one way to express a given requirement in API. A different xenotaxonomist could have completely different criteria to organise life forms, for example.</p>
+<p>Still, I think the judgement was correct because it is fair. Standard library APIs are a special case amongst APIs in general because, developers spends a substantial portion of their career learning and using it. They do so under the faith that the APIs could be extended in the future, to be used in contexts that aren&rsquo;t invented yet. The developers trust that the language and API creators have good intentions. Compare this with product APIs, which are utilitarian, fleeting and no one actually cares to remember them.</p>
+<p>When Java came out, developers trusted Sun because, what was promised was an open system that developers had to only learn once. Oracle did not keep this faith, and I doubt if programming languages or core APIs that Oracle may choose to build now, will see the same level of developer adoption as Java did. Oracle is in the product business anyway, so I doubt if it even cares.</p>
+<p>On the other hand, the judgement has held that declaring code is copyright-able, but Google&rsquo;s use of declaring code was fair. In doing so, in my opinion, it has lowered the bar for what is considered fair use. If this case is allowed to be used as a precedent, then this opens the door to a future, where large firms, such as Google and Oracle, may use this bar, to compete unfairly with their upstart competition. Only time will tell.</p>
+<p><strong>Links</strong></p>
+<ol>
+<li>Opinion of the court; Oracle vs Google <a href="https://www.supremecourt.gov/opinions/20pdf/18-956_d18f.pdf">https://www.supremecourt.gov/opinions/20pdf/18-956_d18f.pdf</a></li>
+<li>Dewey Decimal classes <a href="https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes">https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes</a></li>
+<li>Structure and Interpretation of Computer Programs <a href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-9.html#%25_chap_1">https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-9.html#%_chap_1</a></li>
+</ol>
+
+        
+      </div>
+      <div class="paginator">
+        
+        <a class="link" href="https://k-metric.github.io/post/first-post/">← prev</a>
+        
+        
+        <a></a>
+        
+      </div>
+      <div class="comment">
+        
+      </div>
+      
+    </main>
+    <footer id="footer">
+  <div>
+    <span>© 2019</span> - <span>2021</span>
+  </div>
+
+  <div>
+    <span>Powered by </span>
+    <a class="link" href="https://gohugo.io/">Hugo</a>
+    <span> 🍦 Theme </span>
+    <a class="link" href="https://github.com/queensferryme/hugo-theme-texify">TeXify</a>
+  </div>
+
+  <div class="footnote">
+    <span>Follow me on <a class=link href=https://github.com/k-metric>GitHub</a>, <a class=link href=https://twitter.com/k_metric>Twitter</a> or <a class=link href=/index.xml>RSS</a> | <a class=link href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank rel=noopener>CC BY-NC-SA 4.0</a></span>
+  </div>
+</footer>
+
+  </div>
+  
+
+
+
+
+
+</body>
+
+</html>
